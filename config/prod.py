@@ -40,8 +40,7 @@ DATABASES.update(
             "USER": os.getenv("BKAPP_MYSQL_USER"),  # 数据库用户
             "PASSWORD": os.getenv("BKAPP_MYSQL_PASSWORD"),  # 数据库密码
             "HOST": os.getenv("BKAPP_MYSQL_HOST"),  # 数据库主机
-            "PORT": "3306",  # 数据库端口
+            "PORT": os.getenv("BKAPP_MYSQL_PORT"),  # 数据库端口
         },
     }
 )
-
