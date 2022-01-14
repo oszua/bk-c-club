@@ -29,7 +29,8 @@ BK_STATIC_URL = STATIC_URL + "dist/"
 # LOG_LEVEL = "ERROR"
 # LOGGING = set_log_level(locals())
 
-# 预发布环境数据库可以在这里配置
+# 预发布环境取消csrf认证
+MIDDLEWARE = tuple([value for value in MIDDLEWARE if value != "django.middleware.csrf.CsrfViewMiddleware"])
 
 # 前后端开发模式下支持跨域配置
 if FRONTEND_BACKEND_SEPARATION:
