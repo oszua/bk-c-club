@@ -1,6 +1,6 @@
 /**
  * @file highlight.js 设置高亮语言，默认的加载的语言太多了
- * @author wheel-w
+ * @author DomineCore
  */
 
 import hljs from 'highlight.js/lib/highlight'

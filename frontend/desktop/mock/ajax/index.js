@@ -1,6 +1,6 @@
 /**
  * @file mock index module
- * @author wheel-w
+ * @author DomineCore
  */
 
 import moment from 'moment'

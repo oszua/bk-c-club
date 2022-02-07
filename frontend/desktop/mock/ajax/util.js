@@ -1,6 +1,6 @@
 /**
  * @file mock util
- * @author wheel-w
+ * @author DomineCore
  */
 
 export function randomInt (n, m) {

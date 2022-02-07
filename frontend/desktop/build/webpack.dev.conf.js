@@ -1,6 +1,6 @@
 /**
  * @file webpack dev conf
- * @author wheel-w
+ * @author DomineCore
  */
 
 import path from 'path'

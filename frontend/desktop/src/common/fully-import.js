@@ -1,6 +1,6 @@
 /**
  * @file 全量引入 bk-magic-vue 组件
- * @author wheel-w
+ * @author DomineCore
  */
 
 import Vue from 'vue'

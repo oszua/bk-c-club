@@ -1,6 +1,6 @@
 /**
  * @file intro router 配置
- * @author wheel-w
+ * @author DomineCore
  */
 
 const Introduction = () => import(/* webpackChunkName: 'intro' */'@doc/views/intro/introduction.md')

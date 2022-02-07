@@ -1,6 +1,6 @@
 /**
  * @file webpack public path config
- * @author wheel-w
+ * @author DomineCore
  */
 
 // eslint-disable-next-line

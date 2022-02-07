@@ -1,6 +1,6 @@
 /**
  * @file dev server
- * @author wheel-w
+ * @author DomineCore
  */
 
 import path from 'path'

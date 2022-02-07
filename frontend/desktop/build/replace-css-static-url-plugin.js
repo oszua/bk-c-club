@@ -1,6 +1,6 @@
 /**
  * @file 替换 asset css 中的 BK_STATIC_URL，__webpack_public_path__ 没法解决 asset 里静态资源的 url
- * @author wheel-w
+ * @author DomineCore
  */
 
 import { extname } from 'path'

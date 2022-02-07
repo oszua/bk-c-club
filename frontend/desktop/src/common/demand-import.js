@@ -1,6 +1,6 @@
 /**
  * @file 按需引入 bk-magic-vue 组件
- * @author wheel-w
+ * @author DomineCore
  */
 
 /* eslint-disable import/no-duplicates */

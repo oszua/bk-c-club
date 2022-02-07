@@ -1,6 +1,6 @@
 /**
  * @file webpack base conf
- * @author wheel-w
+ * @author DomineCore
  */
 
 import webpack from 'webpack'

@@ -1,6 +1,6 @@
 /**
  * @file config
- * @author wheel-w
+ * @author DomineCore
  */
 
 import path from 'path'

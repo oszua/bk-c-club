@@ -1,6 +1,6 @@
 /**
  * @file auth
- * @author wheel-w
+ * @author DomineCore
  */
 
 import store from '@/store'

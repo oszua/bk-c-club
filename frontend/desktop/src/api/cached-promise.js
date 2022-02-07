@@ -1,6 +1,6 @@
 /**
  * @file promise 缓存
- * @author wheel-w
+ * @author DomineCore
  */
 
 export default class CachedPromise {

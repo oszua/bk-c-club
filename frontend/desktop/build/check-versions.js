@@ -1,6 +1,6 @@
 /**
  * @file 检测 node 和 npm 的版本
- * @author wheel-w
+ * @author DomineCore
  */
 
 import childProcess from 'child_process'

@@ -1,6 +1,6 @@
 /**
  * @file ajax handler for dev
- * @author wheel-w
+ * @author DomineCore
  */
 
 import path from 'path'

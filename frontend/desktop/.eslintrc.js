@@ -1,6 +1,6 @@
 /**
  * @file eslint config
- * @author wheel-w
+ * @author DomineCore
  */
 
 module.exports = {

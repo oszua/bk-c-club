@@ -1,6 +1,6 @@
 /**
  * @file anchor mixin
- * @author wheel-w
+ * @author DomineCore
  */
 
 import { getActualTop } from '@/common/util'

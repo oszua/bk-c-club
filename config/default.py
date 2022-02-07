@@ -33,8 +33,7 @@ from blueapps.conf.log import get_logging_config_dict
 
 # 请在这里加入你的自定义 APP
 INSTALLED_APPS += (  # noqa
-    "home_application",
-    "mako_application",
+    "home",
 )
 
 # 这里是默认的中间件，大部分情况下，不需要改动
@@ -91,7 +90,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # noqa
 IS_USE_CELERY = False
 
 # 前后端分离开发配置开关，设置为True时dev和stag环境会自动加载允许跨域的相关选项
-FRONTEND_BACKEND_SEPARATION = False
+FRONTEND_BACKEND_SEPARATION = True
 
 # CELERY 并发数，默认为 2，可以通过环境变量或者 Procfile 设置
 CELERYD_CONCURRENCY = os.getenv("BK_CELERYD_CONCURRENCY", 2)  # noqa

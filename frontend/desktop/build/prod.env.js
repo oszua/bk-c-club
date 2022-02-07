@@ -1,6 +1,6 @@
 /**
  * @file production env
- * @author wheel-w
+ * @author DomineCore
  */
 
 // 环境变量里的值需要 JSON.stringify 化，原因如下：

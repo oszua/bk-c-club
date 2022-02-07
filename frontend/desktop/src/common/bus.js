@@ -1,6 +1,6 @@
 /**
  * @file event bus
- * @author wheel-w
+ * @author DomineCore
  */
 
 import Vue from 'vue'

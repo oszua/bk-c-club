@@ -1,6 +1,6 @@
 /**
  * @file main store
- * @author wheel-w
+ * @author DomineCore
  */
 
 import Vue from 'vue'

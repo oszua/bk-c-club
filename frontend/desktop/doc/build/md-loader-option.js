@@ -1,6 +1,6 @@
 /**
  * @file vue-markdown-loader conf
- * @author wheel-w
+ * @author DomineCore
  */
 
 import markdownItContainer from 'markdown-it-container'

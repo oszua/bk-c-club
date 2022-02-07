@@ -1,6 +1,6 @@
 /**
  * @file router 配置
- * @author wheel-w
+ * @author DomineCore
  */
 
 import Vue from 'vue'

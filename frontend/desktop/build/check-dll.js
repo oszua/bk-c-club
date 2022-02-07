@@ -1,6 +1,6 @@
 /**
  * @file 检测 dll
- * @author wheel-w
+ * @author DomineCore
  */
 
 import path from 'path'

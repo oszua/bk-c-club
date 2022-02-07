@@ -1,6 +1,6 @@
 /**
  * @file axios 封装
- * @author wheel-w
+ * @author DomineCore
  */
 
 import Vue from 'vue'
@@ -14,7 +14,7 @@ import { messageError } from '@/common/bkmagic'
 import UrlParse from 'url-parse'
 import queryString from 'query-string'
 
-const BASE_URL = window.PROJECT_CONFIG.SITE_URL + AJAX_URL_PREFIX
+const BASE_URL = AJAX_URL_PREFIX
 
 // axios 实例
 const axiosInstance = axios.create({

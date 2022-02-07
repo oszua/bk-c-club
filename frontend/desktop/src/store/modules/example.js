@@ -1,6 +1,6 @@
 /**
  * @file app store
- * @author wheel-w
+ * @author DomineCore
  */
 
 import http from '@/api'

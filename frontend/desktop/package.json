@@ -1,8 +1,8 @@
 {
-  "name": "desktop",
+  "name": "bk-c-club",
   "version": "1.0.0",
-  "description": "Project description",
-  "author": "wheel-w",
+  "description": "蓝鲸校园社团招新系统",
+  "author": "DomineCoe",
   "scripts": {
     "dev": "better-npm-run dev",
     "doc": "better-npm-run doc",

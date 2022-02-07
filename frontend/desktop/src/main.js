@@ -1,6 +1,6 @@
 /**
  * @file main entry
- * @author wheel-w
+ * @author DomineCore
  */
 
 import './public-path'

@@ -1,6 +1,6 @@
 /**
  * @file webpack build conf
- * @author wheel-w
+ * @author DomineCore
  */
 
 import { resolve } from 'path'

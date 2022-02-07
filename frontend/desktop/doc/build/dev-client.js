@@ -1,6 +1,6 @@
 /**
  * @file for hot-reload
- * @author wheel-w
+ * @author DomineCore
  */
 
 /* eslint-disable */

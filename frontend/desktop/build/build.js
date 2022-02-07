@@ -1,6 +1,6 @@
 /**
  * @file build
- * @author wheel-w
+ * @author DomineCore
  */
 
 import ora from 'ora'

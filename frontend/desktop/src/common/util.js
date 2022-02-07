@@ -1,6 +1,6 @@
 /**
  * @file 通用方法
- * @author wheel-w
+ * @author DomineCore
  */
 
 /**

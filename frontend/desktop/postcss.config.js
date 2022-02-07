@@ -1,6 +1,6 @@
 /**
  * @file postcss 基本配置
- * @author wheel-w
+ * @author DomineCore
  */
 
 const createResolver = require('postcss-import-webpack-resolver')

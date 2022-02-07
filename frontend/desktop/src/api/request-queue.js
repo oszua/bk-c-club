@@ -1,6 +1,6 @@
 /**
  * @file 请求队列
- * @author wheel-w
+ * @author DomineCore
  */
 
 export default class RequestQueue {
