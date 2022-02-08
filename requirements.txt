@@ -26,3 +26,6 @@ python-json-logger==0.1.7
 whitenoise==3.3.0
 six==1.11.0
 gunicorn==19.6.0
+
+# 流程引擎
+bamboo-engine==1.4.0
