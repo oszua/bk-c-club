@@ -1,242 +1,176 @@
-# Bk-c-club: A event-driven workflow engine for Python
+# 蓝鲸高校项目：社团招新系统
+- [一、快速开始](#一快速开始)
+  - [1. 从主仓库fork代码到自己的个人仓库](#1-从主仓库fock代码到自己的个人仓库)
+  - [2. git clone 自己仓库的代码到本地](#2-gitclone自己仓库的代码到本地)
+  - [3. 本地开发环境搭建](#3-本地开发环境搭建)
+- [二、开发须知](#二开发须知)
+  - [1. 开发模式----基于PR的开发协作模式](#1-开发模式----基于PR的开发协作模式)
+  - [2. 开发规范](#2-开发规范)
+- [三、学习资料](#三学习资料)
 
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/TencentBlueKing/bamboo-engine/blob/master/LICENSE.txt)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/TencentBlueKing/bamboo-engine/pulls)
-[![Python 3.6](https://img.shields.io/badge/python-v3.6-blue)](https://github.com/TencentBlueKing/bamboo-engine/)
-[![Python 3.7](https://img.shields.io/badge/python-v3.7-blue)](https://github.com/TencentBlueKing/bamboo-engine/)
-[![codecov](https://codecov.io/gh/TencentBlueKing/bamboo-engine/branch/master/graph/badge.svg?token=ROH54UE7B8)](https://codecov.io/gh/TencentBlueKing/bamboo-engine)
-[![BK Pipelines Status](https://api.bkdevops.qq.com/process/api/external/pipelines/projects/blueapps/p-d620b6131c994e76ba292ae359c162f1/badge?X-DEVOPS-PROJECT-ID=blueapps)](https://api.bkdevops.qq.com/process/api/external/pipelines/projects/blueapps/p-d620b6131c994e76ba292ae359c162f1/badge?X-DEVOPS-PROJECT-ID=blueapps)
+# 一、快速开始
 
-[(English Documents Available)](README_en.md)
+### 1. fork主仓库
+![image-20210904185418586](https://github.com/TencentBlueKing/bk-training-open/raw/master/static/images/image-20210904185137806.png)
 
-bk-c-club是基于蓝鲸流程引擎bamboo-engine设计的一款流程可编排可定制的社团招新管理系统。
+### 2. clone代码到本地
+1. 在自己的电脑上新建一个空目录（目录完整路径中不要包含中文）
+2. 在当前目录打开终端，执行git clone ${仓库地址}
 
-<!-- TOC -->
-- [整体设计](#整体设计)
-- [Quick start](#quick-start)
-  - [1. 安装依赖](#1-安装依赖)
-  - [2. 项目初始化](#2-项目初始化)
-  - [3. 执行流程](#3-执行流程)
-- [benchmark](#benchmark)
+### 3. 搭建本地运行环境
+1. 首先安装项目底层依赖组件：rabbitmq、redis、python3.6.7、mysql5.7
+2. 配置python虚拟环境
+   1. 安装pipenv：`pip install pipenv`
+   2. 在项目目录下打开终端，执行pipenv install创建虚拟环境
+   3. 在pycharm/vscode等IDE中选择使用上一步创建好的虚拟环境
+3. 在项目新建local_settings.py，填入以下内容:
 
-<!-- /TOC -->
-- 使用文档
-  - [核心概念](./docs/user_guide/basic_concept.md)
-  - [流程编排](./docs/user_guide/flow_orchestration.md)
-  - [流程构造器](./docs/user_guide/flow_builder.md)
-  - [SPLICE 变量](./docs/user_guide/splice_var.md)
-  - [Engine API](./docs/user_guide/engine_api.md)
-  - [监控](./docs/user_guide/monitor.md)
-- 运行时文档
-  - bamboo-pipeline
-    - [自定义组件](./docs/user_guide/custom_component.md)
-    - [运行自定义组件](./docs/user_guide/run_your_component.md)
-    - [组件单元测试](./docs/user_guide/component_unit_test.md)
-    - [Worker 配置](./docs/user_guide/workers.md)
+  ```python
+  # -*- coding: utf-8 -*-
+  
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': '', #本地项目数据库名
+          'USER': '',  # 本地数据库账号
+          'PASSWORD': '',  # 本地数据库密码
+          'HOST': 'localhost',
+          'PORT': '3306',
+          'TEST_CHARSET': "utf8",
+          'TEST_COLLATION': "utf8_general_ci",
+          'TEST': {
+              'CHARSET': 'utf8',
+              'COLLATION': 'utf8_general_ci',
+          }
+      },
+  }
+  
+  REDIS = {
+      'host': 'localhost',
+      'port': 6379,
+      'db': 0
+  }
+  STATIC_ROOT = 'static'
+  ```
+4. 配置项目所需最小环境变量:
 
-## 整体设计
+   | 名称         | 值                 |
+   | ------------ | ------------------ |
+   | APP_ID       | 联系项目负责人获取 |
+   | APP_TOKEN    | 联系项目负责人获取 |
+   | BK_PAAS_HOST | 联系项目负责人获取 |
 
-bamboo-engine 是流程引擎核心模块、调度逻辑的定义和实现，并没有内置特定的引擎运行时，需要搭配实现了 `bamboo_engine.eri.interfaces.EngineRuntimeInterface` 接口的引擎运行时使用，目前提供了以下运行时可供使用：
+5. 安装所需依赖：
 
-- 基于 Django，Celery 的运行时：[bamboo-pipeline](./runtime/bamboo-pipeline)
+   首先cd到项目根目录下，然后执行：`pip install -r requirements.txt`
 
-引擎整体架构：
+6. 执行数据库初始化命令：
 
-![](./docs/assets/img/code_arch.png)
+   `python manage.py migrate`
 
-## Quick start
+7. 尝试运行项目：
 
-### 1. 安装依赖
+   web进程：`python manage.py runserver`
+   
+8. 其他常用命令：
 
-```
-$ pip install bamboo-pipeline
-```
-### 2. 项目初始化
+   收集静态文件：`python manage.py collectstatic --noinput`
+   celery worker：`python manage.py celery worker`
+   celery beat: `python manage.py celery beat`
 
-由于 `bamboo-pipeline` 运行时基于 Django 实现，所以需要新建一个 Django 项目：
+# 二、开发须知
 
-```
-$ django-admin startproject bamboo_engine_playground
-$ cd bamboo_engine_playground
-```
+### 1. 基于PR的开发模式
+下面通过新功能开发和bug修复两个开发场景阐述我们的工作流，假定：
 
-在 `bamboo_engine_playground.settings.py` 下添加如下配置：
+   upstream：主仓库
+   origin：开发者fork出的个人仓库
 
-```python
-from pipeline.eri.celery.queues import *
-from celery import Celery
+##### 1 基于PR的功能开发模式：https://whimsical.com/65wnasuhWbE19oMWbjkhY9
 
-app = Celery("proj")
+1. 开发前拉取主仓库develop分支（git pull upstream develop）
+3. 新建本地功能分支（git checkout -b feature_xxx）
+4. 开发·····本地自测····
+5. git commit -m （此时触发pre-commit检查）
+6. git push origin feature_xxx:feature_xxx（推送本地新功能代码到fork仓库新分支）
+7. New  Pull Request from fork resp to main resp( 从frok仓库提交PR、合并请求到主仓库develop分支）
+8. 持续集成（github自动单元测试、代码检查）
+9. Code Review（项目管理员进行代码审核）
+10. Merge to develop（审核通过后由管理员合并入开发分支）
+11. 发布测试
+12. New Pull Request from develop to master
+13. 持续集成（github自动单元测试、代码检查）
+14. Merge to master（代码检查通过后合并入主分支）
+15. 发布测试
+16. 正式发布，功能开发完成
 
-app.config_from_object("django.conf:settings")
+##### 2 基于PR的bug修复模式：
 
-INSTALLED_APPS = [
-    ...
-    "pipeline",
-    "pipeline.engine",
-    "pipeline.component_framework",
-    "pipeline.eri",
-    ...
-]
-```
+1. 开发前拉取主仓库master分支（git pull upstream master）
+3. 新建本地bug修复分支（git checkout -b bugfix_xxx）
+4. bug修复·····本地自测····
+5. git commit -m （此时触发pre-commit检查）
+6. git push origin bugfix_xxx:bugfix_xxx（推送本地bugfix_xxx分支到fork仓库的bugfix_xxx分支）
+7. New Pull Request from bugfix_xxx to master（从fork仓库bugfix_xxx分支提交PR到主仓库master分支）
+8. 持续集成（github自动单元测试、代码检查）
+9. Code Review（项目管理员进行代码审核）
+10. Merge to master（审核通过后由管理员合并入主分支）
+11. 发布测试
+12. 正式发布，修复完成
 
-在 `bamboo_engine_playground` 目录下初始化数据库：
+### 3. 开发规范
 
-```
-$ python manage.py migrate
-```
+- 前端规范------[文档中心 | 蓝鲸 (tencent.com)](https://bk.tencent.com/docs/document/6.0/130/5882)
 
-### 3. 执行流程
+- 后端规范------[文档中心 | 蓝鲸 (tencent.com)](https://bk.tencent.com/docs/document/6.0/130/5872)
 
-首先在 `bamboo_engine_playground` 目录下启动 celery worker：
+- 代码提交规范
 
-```
-$ python manage.py celery worker -Q er_execute,er_schedule -l info
-```
+	- 配置`pre-commit`
 
-创建并执行一个简单的流程：
+		`pre-commit`在git add提交之后，然后执行git commit时执行，如果脚步执行没有报错就继续提交，否则就驳回提交的操作，从而实现对代码的检查、优化代码格式等任务。
 
-![](./docs/assets/img/simple_example.png)
+		```
+		# 安装pre-commit
+		pip install pre-commit
+		
+		# 安装git hook脚本,成功之后会在.git/hooks里生成pre-commit文件
+		pre-commit install
+		
+		# 运行所配置的所有规则，使其起作用
+		pre-commit run --all-files
+		```
 
-```python
-import time
+	- commit分类-----每次代码提交必须有备注说明，注明本次提交做了哪些修改
 
-from bamboo_engine import api
-from bamboo_engine.builder import *
-from pipeline.eri.runtime import BambooDjangoRuntime
+		`bugfix` - 线上功能 bug
 
-# 使用 builder 构造出流程描述结构
-start = EmptyStartEvent()
-# 这里先使用 bamboo-pipeline 自带的示例组件，我们会在后续的章节中学习如何自定义组件
-act = ServiceActivity(component_code="example_component")
-end = EmptyEndEvent()
+		`sprintfix` - 未上线代码修改 （功能模块未上线部分 bug）
 
-start.extend(act).extend(end)
+		`minor` - 不重要的修改（换行，拼写错误等）
 
-pipeline = builder.build_tree(start)
+		`feature` - 新功能说明
 
-# 执行流程对象
-runtime = BambooDjangoRuntime()
+		```
+		# 新功能：
+		git add .
+		git commit -m feature:xxxx
+		
+		# bug修复：
+		git add .
+		git commit -m bugfix:xxxxxxxxxxxxx
 
-api.run_pipeline(runtime=runtime, pipeline=pipeline)
-
-# 等待 1s 后获取流程执行结果
-time.sleep(1)
-
-result = api.get_pipeline_states(runtime=runtime, root_id=pipeline["id"])
-
-print(result.data)
-```
-
-随后我们就能够看到流程的状态信息，如下所示，流程中的所有节点已经执行成功：
-
-```python
-{'pc31c89e6b85a4e2c8c5db477978c1a57': {'id': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-  'state': 'FINISHED',
-  'root_id:': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-  'parent_id': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-  'version': 'vaf47e56f2f31401e979c3c47b2a0c285',
-  'loop': 1,
-  'retry': 0,
-  'skip': False,
-  'created_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 688664, tzinfo=<UTC>),
-  'started_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 688423, tzinfo=<UTC>),
-  'archived_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 775165, tzinfo=<UTC>),
-  'children': {'e42035b3f98374062921a191115fc602e': {'id': 'e42035b3f98374062921a191115fc602e',
-    'state': 'FINISHED',
-    'root_id:': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'parent_id': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'version': 've2d0fa10d7d842a1bcac25984620232a',
-    'loop': 1,
-    'retry': 0,
-    'skip': False,
-    'created_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 744490, tzinfo=<UTC>),
-    'started_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 744308, tzinfo=<UTC>),
-    'archived_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 746690, tzinfo=<UTC>)},
-   'e327f83de42df4ebfab375c271bf63d29': {'id': 'e327f83de42df4ebfab375c271bf63d29',
-    'state': 'FINISHED',
-    'root_id:': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'parent_id': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'version': 'v893cdc14150d4df5b20f2db32ba142b3',
-    'loop': 1,
-    'retry': 0,
-    'skip': False,
-    'created_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 753321, tzinfo=<UTC>),
-    'started_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 753122, tzinfo=<UTC>),
-    'archived_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 758697, tzinfo=<UTC>)},
-   'e6c7d7a3721ca4b19a5a7f3b34d8387bf': {'id': 'e6c7d7a3721ca4b19a5a7f3b34d8387bf',
-    'state': 'FINISHED',
-    'root_id:': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'parent_id': 'pc31c89e6b85a4e2c8c5db477978c1a57',
-    'version': 'v0c661ee6994d4eb4bdbfe5260f9a9f22',
-    'loop': 1,
-    'retry': 0,
-    'skip': False,
-    'created_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 767563, tzinfo=<UTC>),
-    'started_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 767384, tzinfo=<UTC>),
-    'archived_time': datetime.datetime(2021, 3, 10, 3, 45, 54, 773341, tzinfo=<UTC>)}}}}
-```
-
-恭喜你，你已经成功的创建了一个流程并把它运行起来了！
-
-## benchmark
+      # 功能优化：
+		git add .
+		git commit -m minor:xxxxxxxxxxxxx
+		```
 
 
-测试环境：
+## 三、学习资料
 
-- MacBook Pro（16 英寸，2019）
-- 处理器：2.6 GHz 六核Intel Core i7
-- 内存：32 GB 2667 MHz DDR4
-- OS：macOS Big Sur 11.2.1
-- Broker：RabbitMQ 3.8.2
-- MySQL：5.7.22
-- worker 启动命令（单个 worker 进程 -c 参数不变，通过增加进程来提高并发处理能力）
-  - python manage.py celery worker -c 100 -P gevent -l info -Q er_execute -n execute_%(process_num)02d
-  - python manage.py celery worker -c 100 -P gevent -l info -Q er_schedule -n schedule_%(process_num)02d
-
-| 测试场景                          | worker concurrency | 流程执行耗时(s) |
-| --------------------------------- | ------------------ | --------------- |
-| 100个流程(单流程17个节点)并发执行 | 100                | 25.98           |
-| 100个流程(单流程17个节点)并发执行 | 200                | 14.75           |
-| 100个流程(单流程17个节点)并发执行 | 500                | 8.29            |
-| 100个流程(单流程17个节点)并发执行 | 1000               | 6.78            |
-| 1000节点大流程                    | 100                | 19.33           |
-| 1000节点大流程                    | 200                | 12.5            |
-| 1000节点大流程                    | 500                | 11              |
-| 1000节点大流程                    | 1000               | 7.5             |
-
-![](./benchmark/EXECUTION%20水平扩展/Line-20210309.png)
-
-## Roadmap
-
-- [版本日志](release.md)
-
-## Support
-
-- [蓝鲸论坛](https://bk.tencent.com/s-mart/community)
-- [蓝鲸 DevOps 在线视频教程](https://cloud.tencent.com/developer/edu/major-100008)
-- 联系我们，技术交流QQ群：
-
-<img src="https://github.com/Tencent/bk-PaaS/raw/master/docs/resource/img/bk_qq_group.png" width="250" hegiht="250" align=center />
-
-
-## BlueKing Community
-
-- [BK-CI](https://github.com/Tencent/bk-ci)：蓝鲸持续集成平台是一个开源的持续集成和持续交付系统，可以轻松将你的研发流程呈现到你面前。
-- [BK-BCS](https://github.com/Tencent/bk-bcs)：蓝鲸容器管理平台是以容器技术为基础，为微服务业务提供编排管理的基础服务平台。
-- [BK-BCS-SaaS](https://github.com/Tencent/bk-bcs-saas)：蓝鲸容器管理平台SaaS基于原生Kubernetes和Mesos自研的两种模式，提供给用户高度可扩展、灵活易用的容器产品服务。
-- [BK-PaaS](https://github.com/Tencent/bk-PaaS)：蓝鲸PaaS平台是一个开放式的开发平台，让开发者可以方便快捷地创建、开发、部署和管理SaaS应用。
-- [BK-SOPS](https://github.com/Tencent/bk-sops)：标准运维（SOPS）是通过可视化的图形界面进行任务流程编排和执行的系统，是蓝鲸体系中一款轻量级的调度编排类SaaS产品。
-- [BK-CMDB](https://github.com/Tencent/bk-cmdb)：蓝鲸配置平台是一个面向资产及应用的企业级配置管理平台。
-
-## Contributing
-
-如果你有好的意见或建议，欢迎给我们提 Issues 或 Pull Requests，为蓝鲸开源社区贡献力量。
-
-1. 本项目使用 [Poetry](https://python-poetry.org/) 进行开发、构建及发布，本地开发环境搭建请参考 Poetry 官方文档
-2. PR 需要通过 CI 中的所有代码风格检查，单元测试及集成测试才可被接受合并
-3. 新增加的模块请确保完备的单元测试覆盖
-
-## License
-
-基于 MIT 协议， 详细请参考[LICENSE](LICENSE.txt)
+1. 在线课程[【蓝鲸开课】2020秋季蓝鲸基础开发实战课程-学习视频教程-腾讯课堂 (qq.com)](https://ke.qq.com/course/3030664?taid=10315536490446472)
+2. 文档中心[文档中心 | 蓝鲸 (tencent.com)](https://bk.tencent.com/docs/document/6.0/130/5948)
+3. `django-rest-framework`[Home - Django REST framework (django-rest-framework.org)](https://www.django-rest-framework.org/)
+4. `django 2.2`[Django 文档 | Django 文档 | Django (djangoproject.com)](https://docs.djangoproject.com/zh-hans/2.2/)
+5. 前端组件库[蓝鲸 MagicBox-Vue 组件库 (tencent.com)](https://magicbox.bk.tencent.com/static_api/v3/components_vue/2.0/example/index.html#/)
+6. `vue`语法[介绍 — Vue.js (vuejs.org)](https://cn.vuejs.org/v2/guide/)
