@@ -60,19 +60,27 @@
    | APP_TOKEN    | 联系项目负责人获取 |
    | BK_PAAS_HOST | 联系项目负责人获取 |
 
-5. 安装所需依赖：
+5. 配置hosts：
+   
+   Windows：C:\Windows\System32\drivers\etc\hosts
+   MacOS：/etc/hosts
+
+   在hosts文件中新增一项：`127.0.0.1 appdev.paas-edu.bktencent.com`
+
+6. 安装所需依赖：
 
    首先cd到项目根目录下，然后执行：`pip install -r requirements.txt`
 
-6. 执行数据库初始化命令：
+7. 执行数据库初始化命令：
 
    `python manage.py migrate`
 
-7. 尝试运行项目：
+8. 尝试运行项目：
 
    web进程：`python manage.py runserver`
+   访问地址：`appdev.paas-edu.bktencent.com:8000`
    
-8. 其他常用命令：
+9. 其他常用命令：
 
    收集静态文件：`python manage.py collectstatic --noinput`
    celery worker：`python manage.py celery worker`
