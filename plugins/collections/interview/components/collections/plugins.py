@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Tencent is pleased to support the open source community by making 蓝鲸智云PaaS平台社区版 (BlueKing PaaS Community
@@ -11,15 +12,14 @@ an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express o
 specific language governing permissions and limitations under the License.
 """
 
-from email.mime import base
-from django.conf.urls import include, url
-from rest_framework.routers import DefaultRouter
+from pipeline.core.flow.activity import Service
+from pipeline.component_framework.component import Component
 
-from apps.flowapi.viewsets import FlowTmplViewSet
+class InterViewService(Service):
+    pass
 
-v1_api = DefaultRouter()
-v1_api.register("flowtmpl", FlowTmplViewSet, basename="flowtmpl")
+class InterViewComponent(Component):
+    name = '面试'
+    code = 'interview'
+    bound_service = InterViewService
 
-url_custom = [
-    url("^api/v1/", include(v1_api.urls))
-]
