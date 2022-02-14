@@ -20,4 +20,5 @@ urlpatterns = [
     url(r"^admin/", admin.site.urls),
     url(r"^account/", include("blueapps.account.urls")),
     url(r"^", include("home.urls")),
+    url(r"^plugin/", include("plugins.urls")),
 ] + url_custom

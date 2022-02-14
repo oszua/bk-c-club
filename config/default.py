@@ -12,6 +12,7 @@ specific language governing permissions and limitations under the License.
 """
 
 from blueapps.conf.default_settings import *  # noqa
+from pipeline.eri.celery.queues import *  # noqa
 from blueapps.conf.log import get_logging_config_dict
 
 # 这里是默认的 INSTALLED_APPS，大部分情况下，不需要改动
@@ -33,7 +34,24 @@ from blueapps.conf.log import get_logging_config_dict
 
 # 请在这里加入你的自定义 APP
 INSTALLED_APPS += (  # noqa
+    # 流程引擎
+    "pipeline",
+    "pipeline.engine",
+    "pipeline.component_framework",
+    "pipeline.eri",
+    # drf
+    "rest_framework",
+    # flow系统
+    "engine.flowtmpl",
+    "engine.flow",
+    # 首页
     "home",
+    # 插件
+    "plugins",
+    "plugins.collections.notify",
+    "plugins.collections.interview",
+    # app
+    "apps.flowapi",
 )
 
 # 这里是默认的中间件，大部分情况下，不需要改动
