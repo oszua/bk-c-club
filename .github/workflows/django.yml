@@ -27,4 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
+        export APP_ID=APP_ID
+        export APP_TOKEN=APP_TOKEN
+        export BK_PAAS_HOST=BK_PAAS_HOST
         python manage.py test
