@@ -29,7 +29,7 @@ export default {
         assetsPublicPath: '/',
         proxyTable: {
             '/bk_api': {  //代理地址
-                target: 'http://dev.paas-edu.bktencent.com:8000',  //需要代理的地址， 实际生产环境需要访问的地址
+                target: 'http://paas-edu.bktencent.com/t/bk-c-club',  //需要代理的地址， 实际生产环境需要访问的地址
                 changeOrigin: true,  //是否跨域
                 secure: false,
                 pathRewrite: {
