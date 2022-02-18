@@ -50,7 +50,7 @@
       'port': 6379,
       'db': 0
   }
-  STATIC_ROOT = 'static'
+  STATIC_ROOT = 'staticfiles'
   ```
 4. 配置项目所需最小环境变量:
 
@@ -77,6 +77,7 @@
 
 8. 尝试运行项目：
 
+   收集静态文件: `python manage.py collectstatic --noinput`
    web进程：`python manage.py runserver`
    访问地址：`appdev.paas-edu.bktencent.com:8000`
    
