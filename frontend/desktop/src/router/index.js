@@ -22,22 +22,22 @@ const routes = [
         component: MainEntry,
         children: [
             {
-                path: 'editFlow',
+                path: 'editFlow/',
                 name: 'editFlow',
                 component: () => import('@/views/editFlow.vue')
             },
             {
-                path: 'manageRecruit',
+                path: 'manageRecruit/',
                 name: 'manageRecruit',
                 component: () => import('@/views/manageRecruit.vue')
             },
             {
-                path: 'clubInfo',
+                path: 'clubInfo/',
                 name: 'clubInfo',
                 component: () => import('@/views/clubInfo.vue')
             },
             {
-                path: 'checkinData',
+                path: 'checkinData/',
                 name: 'checkinData',
                 component: () => import('@/views/checkinData.vue')
             }

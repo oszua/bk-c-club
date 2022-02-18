@@ -116,7 +116,7 @@
                     window.location.reload()
                 }, 0)
             })
-            this.$router.push({ path: this.nav.id })
+            this.$router.push({ path: window.PROJECT_CONFIG.SITE_URL + this.nav.id })
         },
         updated () {
             this.nav.id = this.$route.name
