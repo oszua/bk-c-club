@@ -6,20 +6,38 @@
             :need-menu="true"
             @toggle="handleToggle">
             <template slot="side-header">
-                <div class="debug logo">Logo</div>
-                <div class="debug">蓝鲸社团报名管理系统</div>
+                <div class="side-header-container">
+                    <div class="debug logo">
+                        <img src="./images/Logo.png" alt="LOGO">
+                    </div>
+                    <div v-if="nav.toggle" class="header-title">蓝鲸社团报名管理系统</div>
+                </div>
             </template>
             <template slot="header">
                 <div class="header-container">
                     <!-- pageHead -->
                     <div class="page-title-container">
-                        <span class="header-title-icon" @click="handleRouterBack">
-                            <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4756"><path d="M416 480h320v64H416l96 96-48 48-176-176 176-176 48 48-96 96z" p-id="4757"></path></svg>
-                        </span>
-                        <span class="header-title">{{nav.list.filter(value => value.id === $route.name)[0].name}}</span>
+                        <div class="header-title-icon" @click="handleRouterBack">
+                            <svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4756"><path d="M416 480h320v64H416l96 96-48 48-176-176 176-176 48 48-96 96z" p-id="4757"></path></svg>
+                        </div>
+                        <div class="right-header-title">{{nav.list.filter(value => value.id === nav.id)[0].name}}</div>
                     </div>
                     <!-- userInfo -->
-                    <div>userInfo</div>
+                    <div class="user-info">
+                        <bk-popover theme="light navigation-message" :arrow="false" offset="-20, 10" placement="bottom-start" :tippy-options="{ 'hideOnClick': false }">
+                            <div class="header-user">
+                                {{ user.username}}
+                                <i class="bk-icon icon-down-shape"></i>
+                            </div>
+                            <template slot="content">
+                                <div class="monitor-navigation-admin">
+                                    <bk-button class="nav-item" :text="true" title="primary" @click="handleLogout">
+                                        退出
+                                    </bk-button>
+                                </div>
+                            </template>
+                        </bk-popover>
+                    </div>
                 </div>
             </template>
             <template slot="menu">
@@ -97,7 +115,7 @@
             }
         },
         computed: {
-            ...mapGetters(['mainContentLoading'])
+            ...mapGetters(['mainContentLoading', 'user'])
         },
         created () {
             const platform = window.navigator.platform.toLowerCase()
@@ -116,7 +134,7 @@
                     window.location.reload()
                 }, 0)
             })
-            this.$router.push({ path: this.nav.id })
+            this.$router.push({ path: window.PROJECT_CONFIG.SITE_URL + this.nav.id })
         },
         updated () {
             this.nav.id = this.$route.name
@@ -133,6 +151,9 @@
             },
             handleRouterBack () {
                 this.$router.back()
+            },
+            handleLogout () {
+                // todo: 退出不掉啊😭
             }
         }
     }
@@ -152,16 +173,47 @@
     justify-content: space-between;
 }
 
+.page-title-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .header-title {
+    line-height: 36px;
+    font-weight: bold;
+    color: white;
+    cursor: default;
+}
+
+.right-header-title {
+    line-height: 37px;
     cursor: default;
 }
 
 .header-title-icon{
-    width:28px;
-    height:28px;
-    font-size:28px;
-    color:#3A84FF;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    color: #3a84ff;
     cursor: pointer;
+    align-self: center;
+}
+
+.side-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.user-info {
+    line-height: 37px;
 }
 
 .monitor-navigation-header {
