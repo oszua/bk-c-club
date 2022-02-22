@@ -52,7 +52,18 @@ INSTALLED_APPS += (  # noqa
     "plugins.collections.interview",
     # app
     "apps.flowapi",
+    "apps.clubinfo",
+    "apps.recruitmanagement",
+    "apps.registrationdata",
 )
+
+# 配置 MEDIA_ROOT 作为你上传文件在服务器中的基本路径
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
+
+# 配置 MEDIA_URL 作为公用 URL，指向上传文件的基本路径
+
+MEDIA_URL = '/pictures/'
 
 # 这里是默认的中间件，大部分情况下，不需要改动
 # 如果你已经了解每个默认 MIDDLEWARE 的作用，确实需要去掉某些 MIDDLEWARE，或者改动先后顺序，请去掉下面的注释，然后修改
