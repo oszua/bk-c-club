@@ -10,7 +10,7 @@
                     <div class="debug logo">
                         <img src="./images/Logo.png" alt="LOGO">
                     </div>
-                    <div v-if="nav.toggle" class="header-title">蓝鲸社团报名管理系统</div>
+                    <div v-show="nav.toggle" class="header-title">蓝鲸社团报名管理系统</div>
                 </div>
             </template>
             <template slot="header">
