@@ -33,3 +33,6 @@ bamboo-pipeline==3.14.0
 
 # 流程校验
 jsonschema
+
+# image
+pillow
