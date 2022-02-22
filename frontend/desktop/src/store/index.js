@@ -48,6 +48,14 @@ const store = new Vuex.Store({
          */
         updateUser (state, user) {
             state.user = Object.assign({}, user)
+        },
+
+        /**
+         * 退出用户
+         * @param state
+         */
+        logout (state) {
+            state.user = {}
         }
     },
     actions: {
