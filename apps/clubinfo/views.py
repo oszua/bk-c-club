@@ -6,10 +6,9 @@ from apps.clubinfo.serializers import ClubInfoSerializer
 # Create your views here.
 
 
-
 class ClubInfoViewSet(viewsets.ModelViewSet):
     """
-    增删改查图书信息
+    增删改查社团信息
     """
 
     # 传入instance，关联数据库模型

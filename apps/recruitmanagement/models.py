@@ -19,4 +19,3 @@ class RecruitManagement(models.Model):
     end_time = models.DateTimeField(verbose_name='截止时间')
     # 面试轮数
     interview_rounds = models.SmallIntegerField(verbose_name='面试轮数')
-    # 邮件通知模板123

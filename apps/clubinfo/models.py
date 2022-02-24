@@ -23,5 +23,3 @@ class ClubInfo(models.Model):
     class Meta:
         verbose_name = "社团信息表"
         verbose_name_plural = verbose_name
-        # 建立联合约束，防止重复创建
-        unique_together = ("club_name", "logo")

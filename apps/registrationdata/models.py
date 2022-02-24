@@ -38,7 +38,7 @@ class RegistrationData(models.Model):
     报名数据表(个人简历与社团关系)
     """
     # 报名者姓名(绑定简历id)
-    applicant_id = models.SmallIntegerField(verbose_name='简历id')
+    resume_id = models.SmallIntegerField(verbose_name='简历id')
     # 意向社团
     club_id = models.SmallIntegerField(verbose_name='意向社团id')
     # 第一意向部门及第二意向部门

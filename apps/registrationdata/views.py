@@ -20,9 +20,9 @@ class RegistrationDataViewSet(viewsets.ModelViewSet):
     """
     增删改查报名数据
     """
-
     queryset = RegistrationData.objects.all()
     serializer_class = RegistrationDataSerializer
     # 设置分页
     pagination_class = DataPagePagination
+
 
