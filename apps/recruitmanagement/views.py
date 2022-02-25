@@ -1,14 +1,10 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets
-
+from rest_framework.viewsets import ModelViewSet
 from apps.recruitmanagement.models import RecruitManagement
 from apps.recruitmanagement.serializers import RecruitManagementSerializer
+from common import viewsets
 
 
-class RecruitManagementViewSet(viewsets.ModelViewSet):
+class RecruitManagementViewSet(viewsets.GenericViewSet, ModelViewSet):
     """
     增删改查招募信息
     """

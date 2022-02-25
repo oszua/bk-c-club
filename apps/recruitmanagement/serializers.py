@@ -13,7 +13,7 @@ class RecruitManagementSerializer(serializers.ModelSerializer):
         obj: 当前实例
         return: 当前社团信息
         """
-        club_info = ClubInfo.objects.filter(id=obj.club_id)
+        club_info = ClubInfo.objects.filter(id=obj.club_id).first()
         return club_info
 
     class Meta:

@@ -1,12 +1,14 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import mixins
+from rest_framework.viewsets import ModelViewSet
+
 from apps.clubinfo.models import ClubInfo
 from apps.clubinfo.serializers import ClubInfoSerializer
-
+from common import viewsets
 # Create your views here.
 
 
-class ClubInfoViewSet(viewsets.ModelViewSet):
+class ClubInfoViewSet(viewsets.GenericViewSet, ModelViewSet):
     """
     增删改查社团信息
     """
