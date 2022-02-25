@@ -21,7 +21,10 @@ class RegistrationDataSerializer(serializers.ModelSerializer):
         return: 当前社团信息
         """
         club_info = ClubInfo.objects.filter(id=obj.club_id).first()
-        return club_info
+        if club_info:
+            return club_info.club_name
+        else:
+            return '无'
 
     def get_resume(self, obj):
         """
@@ -30,7 +33,10 @@ class RegistrationDataSerializer(serializers.ModelSerializer):
         return: 当前简历信息
         """
         resume = Resume.objects.filter(id=obj.resume_id).first()
-        return resume
+        if resume:
+            return resume.resume_name
+        else:
+            return '无'
 
     class Meta:
         model = RegistrationData

@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from rest_framework import serializers
 
 from apps.clubinfo.models import ClubInfo
@@ -13,8 +14,12 @@ class RecruitManagementSerializer(serializers.ModelSerializer):
         obj: 当前实例
         return: 当前社团信息
         """
-        club_info = ClubInfo.objects.filter(id=obj.club_id).first()
-        return club_info
+        club = obj
+        club_info = ClubInfo.objects.filter(id=club.club_id).first()
+        if club_info:
+            return club_info.club_name
+        else:
+            return '无'
 
     class Meta:
         model = RecruitManagement
