@@ -7,6 +7,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import example from './modules/example'
+import flow from './modules/flow'
 import http from '@/api'
 import { unifyObjectStyle } from '@/common/util'
 
@@ -15,7 +16,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     // 模块
     modules: {
-        example
+        example,
+        flow
     },
     // 公共 store
     state: {
@@ -63,7 +65,7 @@ const store = new Vuex.Store({
          * 获取用户信息
          *
          * @param {Object} context store 上下文对象 { commit, state, dispatch }
-         *
+         * @param config
          * @return {Promise} promise 对象
          */
         userInfo (context, config = {}) {
