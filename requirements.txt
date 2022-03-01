@@ -6,7 +6,7 @@
 # blueapps requirement
 
 redis==3.2.0
-Django==2.2.6
+Django==2.2.16
 celery==4.4.0
 eventlet==0.26.1
 django-celery-beat==2.1.0
@@ -37,3 +37,5 @@ jsonschema
 # image
 pillow
 
+# openapi
+drf-yasg==1.20.0

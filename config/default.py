@@ -41,6 +41,8 @@ INSTALLED_APPS += (  # noqa
     "pipeline.eri",
     # drf
     "rest_framework",
+    # openapi
+    "drf_yasg",
     # flow系统
     "engine.flowtmpl",
     "engine.flow",
