@@ -55,6 +55,8 @@ INSTALLED_APPS += (  # noqa
     "apps.clubinfo",
     "apps.recruitmanagement",
     "apps.registrationdata",
+    # api文档
+    'drf_yasg',
 )
 
 # 配置 MEDIA_ROOT 作为你上传文件在服务器中的基本路径

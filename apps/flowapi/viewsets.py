@@ -6,6 +6,9 @@ from apps.flowapi.serializers import FlowTmplSerializer
 
 
 class FlowTmplViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
+    """
+    自定义招新流程
+    """
 
     serializer_class = FlowTmplSerializer
 
