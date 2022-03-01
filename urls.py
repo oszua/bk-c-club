@@ -10,15 +10,32 @@ Unless required by applicable law or agreed to in writing, software distributed 
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 """
-
 from django.conf.urls import include, url
 from django.contrib import admin
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 from apps.urls import url_custom
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="社团招新系统API接口",
+        default_version="v1",
+        description="社团招新系统API接口",
+        terms_of_service="",
+        contact=openapi.Contact(email="marcus_bin@foxmial.com"),
+        license=openapi.License(name="GPLv3 License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
     url(r"^account/", include("blueapps.account.urls")),
     url(r"^", include("home.urls")),
     url(r"^plugin/", include("plugins.urls")),
+    url(r"redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ] + url_custom
