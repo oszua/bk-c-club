@@ -14,11 +14,15 @@ specific language governing permissions and limitations under the License.
 from email.mime import base
 from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 from apps.clubinfo.views import ClubInfoViewSet
 from apps.flowapi.viewsets import FlowTmplViewSet
 from apps.recruitmanagement.views import RecruitManagementViewSet
 from apps.registrationdata.views import RegistrationDataViewSet
+
 
 v1_api = DefaultRouter()
 v1_api.register("flowtmpl", FlowTmplViewSet, basename="flowtmpl")
@@ -27,5 +31,6 @@ v1_api.register("recruitmanagement", RecruitManagementViewSet, basename="recruit
 v1_api.register("registrationdata", RegistrationDataViewSet, basename="registrationdata")
 
 url_custom = [
-    url("^api/v1/", include(v1_api.urls))
+    url("^api/v1/", include(v1_api.urls)),
+    # url("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]

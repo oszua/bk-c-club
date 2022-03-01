@@ -11,7 +11,7 @@ class Resume (models.Model):
     resume_name = models.CharField(max_length=10, verbose_name='姓名')
     # 报名者性别
     gender = models.IntegerField(choices=((1, "男"), (2, "女")), verbose_name='性别', default=0)
-    # # 个人照片：待处理方案照片上传
+    # 个人照片
     resume_picture = models.ImageField(upload_to='applicant_picture/', verbose_name='个人照片', null=True, blank=True)
     # 学院
     institute = models.CharField(max_length=50, verbose_name='学院')
