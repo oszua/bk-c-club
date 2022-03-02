@@ -15,10 +15,16 @@ from email.mime import base
 from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
 
+from apps.clubinfo.views import ClubInfoViewSet
 from apps.flowapi.viewsets import FlowTmplViewSet
+from apps.recruitmanagement.views import RecruitManagementViewSet
+from apps.registrationdata.views import RegistrationDataViewSet
 
 v1_api = DefaultRouter()
 v1_api.register("flowtmpl", FlowTmplViewSet, basename="flowtmpl")
+v1_api.register("clubinfo", ClubInfoViewSet, basename="clubinfo")
+v1_api.register("recruitmanagement", RecruitManagementViewSet, basename="recruitmanagement")
+v1_api.register("registrationdata", RegistrationDataViewSet, basename="registrationdata")
 
 url_custom = [
     url("^api/v1/", include(v1_api.urls))

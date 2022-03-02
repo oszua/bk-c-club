@@ -3,11 +3,9 @@
  * @author DomineCore
  */
 
-import moment from 'moment'
-import faker from 'faker'
 import chalk from 'chalk'
 
-import { randomInt, sleep } from './util'
+import { sleep } from './util'
 
 export async function response (getArgs, postArgs, req) {
     console.log(chalk.cyan('req', req.method))
@@ -82,6 +80,36 @@ export async function response (getArgs, postArgs, req) {
             code: 0,
             data: {
                 msg: `我是 del 请求返回的数据。请求参数为 ${postArgs.time}`
+            },
+            message: 'ok'
+        }
+    } else if (invoke === 'getFlow') {
+        return {
+            code: 0,
+            data: {
+                flow: [
+                    {
+                        "name": "节点name",
+                        "description": "节点描述",
+                        "component_code": "插件code",
+                        "version": "插件版本",
+                        "inputs": [
+                            {
+                                "key":"notify_tmpl",
+                                "value":"欢迎{name}参加一轮面试",
+                            }
+                        ]
+                    },
+                    {
+                        "name": "节点name",
+                        "description": "节点描述",
+                        "component_code": "插件code",
+                        "version": "插件版本",
+                        "inputs": [
+
+                        ]
+                    }
+                ]
             },
             message: 'ok'
         }
