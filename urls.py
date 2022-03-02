@@ -37,5 +37,5 @@ urlpatterns = [
     url(r"^account/", include("blueapps.account.urls")),
     url(r"^", include("home.urls")),
     url(r"^plugin/", include("plugins.urls")),
-    url(r"redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    url(r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ] + url_custom
