@@ -113,6 +113,20 @@ export async function response (getArgs, postArgs, req) {
             },
             message: 'ok'
         }
+    } else if (invoke === 'getRecruitInfo') {
+        return {
+            code: 0,
+            data: {
+                form: {
+                    club_id: 114514,
+                    recruit_num: '50',
+                    start_time: '',
+                    end_time: '',
+                    interview_rounds: ''
+                },
+                message: 'ok'
+            }
+        }
     }
     return {
         code: 0,

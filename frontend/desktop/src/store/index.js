@@ -8,6 +8,7 @@ import Vuex from 'vuex'
 
 import example from './modules/example'
 import flow from './modules/flow'
+import recruitInfo from './modules/recruitInfo'
 import http from '@/api'
 import { unifyObjectStyle } from '@/common/util'
 
@@ -17,7 +18,8 @@ const store = new Vuex.Store({
     // 模块
     modules: {
         example,
-        flow
+        flow,
+        recruitInfo
     },
     // 公共 store
     state: {
